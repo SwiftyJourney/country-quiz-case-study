@@ -73,4 +73,15 @@ struct CountryQuizAnswererTests {
 
     #expect(result == "GR")
   }
+
+  @Test func code_deliversNilForUnknownCountry() {
+    let countries = [
+      Country(name: "Greece", capital: "Athens", code: "GR", flag: "🇬🇷")
+    ]
+    let sut = CountryQuizAnswerer()
+
+    let result = sut.code(for: "Atlantis", countries: countries)
+
+    #expect(result == nil)
+  }
 }
