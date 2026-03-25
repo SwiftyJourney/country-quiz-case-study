@@ -13,7 +13,7 @@ public final class RemoteCountryLoader {
     self.client = client
   }
 
-  public func load() {
-    client.get(from: url)
+  public func load() async throws {
+    _ = try await client.get(from: url)
   }
 }

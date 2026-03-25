@@ -13,23 +13,34 @@ struct RemoteCountryLoaderTests {
     #expect(client.requestedURLs.isEmpty)
   }
 
-  @Test func load_requestsDataFromURL() {
+  @Test func load_requestsDataFromURL() async throws {
     let url = URL(string: "https://a-given-url.com")!
     let (sut, client) = makeSUT(url: url)
+    client.stub(data: Data(), response: HTTPURLResponse())
 
-    sut.load()
+    _ = try await sut.load()
 
     #expect(client.requestedURLs == [url])
   }
 
-  @Test func loadTwice_requestsDataFromURLTwice() {
+  @Test func loadTwice_requestsDataFromURLTwice() async throws {
     let url = URL(string: "https://a-given-url.com")!
     let (sut, client) = makeSUT(url: url)
+    client.stub(data: Data(), response: HTTPURLResponse())
 
-    sut.load()
-    sut.load()
+    _ = try await sut.load()
+    _ = try await sut.load()
 
     #expect(client.requestedURLs == [url, url])
+  }
+
+  @Test func load_deliversErrorOnClientError() async {
+    let (sut, client) = makeSUT()
+    client.stub(error: anyNSError())
+
+    await #expect(throws: Error.self) {
+      try await sut.load()
+    }
   }
 
   // MARK: - Helpers
@@ -40,11 +51,25 @@ struct RemoteCountryLoaderTests {
     return (sut, client)
   }
 
+  private func anyNSError() -> NSError {
+    NSError(domain: "test", code: 0)
+  }
+
   private final class HTTPClientSpy: HTTPClient {
     private(set) var requestedURLs: [URL] = []
+    private var result: Result<(Data, HTTPURLResponse), Error> = .failure(NSError())
 
-    func get(from url: URL) {
+    func stub(error: Error) {
+      result = .failure(error)
+    }
+
+    func stub(data: Data, response: HTTPURLResponse) {
+      result = .success((data, response))
+    }
+
+    func get(from url: URL) async throws -> (Data, HTTPURLResponse) {
       requestedURLs.append(url)
+      return try result.get()
     }
   }
 }
