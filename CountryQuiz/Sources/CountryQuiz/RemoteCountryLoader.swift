@@ -17,9 +17,15 @@ public final class RemoteCountryLoader: Sendable {
     self.client = client
   }
 
-  public func load() async throws {
-    let (_, response) = try await client.get(from: url)
+  public func load() async throws -> [Country] {
+    let (data, response) = try await client.get(from: url)
     guard response.statusCode == 200 else {
+      throw Error.invalidData
+    }
+
+    do {
+      return try CountryMapper.map(data)
+    } catch {
       throw Error.invalidData
     }
   }

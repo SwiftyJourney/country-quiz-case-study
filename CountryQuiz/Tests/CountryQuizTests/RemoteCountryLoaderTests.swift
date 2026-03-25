@@ -16,7 +16,7 @@ struct RemoteCountryLoaderTests {
   @Test func load_requestsDataFromURL() async throws {
     let url = URL(string: "https://a-given-url.com")!
     let (sut, client) = makeSUT(url: url)
-    client.stub(data: Data(), response: HTTPURLResponse())
+    client.stub(data: emptyListJSON(), response: HTTPURLResponse())
 
     _ = try await sut.load()
 
@@ -26,7 +26,7 @@ struct RemoteCountryLoaderTests {
   @Test func loadTwice_requestsDataFromURLTwice() async throws {
     let url = URL(string: "https://a-given-url.com")!
     let (sut, client) = makeSUT(url: url)
-    client.stub(data: Data(), response: HTTPURLResponse())
+    client.stub(data: emptyListJSON(), response: HTTPURLResponse())
 
     _ = try await sut.load()
     _ = try await sut.load()
@@ -53,6 +53,16 @@ struct RemoteCountryLoaderTests {
     }
   }
 
+  @Test func load__deliversErrorOn200HTTPResponseWithInvalidJSON() async {
+    let (sut, client) = makeSUT()
+    let invalidJSON = Data("invalid json".utf8)
+    client.stub(data: invalidJSON, response: httpURLResponse(statusCode: 200))
+
+    await #expect(throws: RemoteCountryLoader.Error.self) {
+      try await sut.load()
+    }
+  }
+
   // MARK: - Helpers
 
   private func makeSUT(url: URL = URL(string: "https://any-url.com")!) -> (sut: RemoteCountryLoader, client: HTTPClientSpy) {
@@ -62,7 +72,7 @@ struct RemoteCountryLoaderTests {
   }
 
   private func anyNSError() -> NSError {
-    NSError(domain: "test", code: 0)
+    NSError(domain: "test", code: 0, userInfo: nil)
   }
 
   private func httpURLResponse(statusCode: Int) -> HTTPURLResponse {
@@ -72,6 +82,10 @@ struct RemoteCountryLoaderTests {
       httpVersion: nil,
       headerFields: nil
     )!
+  }
+
+  private func emptyListJSON() -> Data {
+    Data("[]".utf8)
   }
 
   private final class HTTPClientSpy: HTTPClient, @unchecked Sendable {
