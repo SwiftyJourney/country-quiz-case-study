@@ -5,12 +5,6 @@
 import CountryQuiz
 import Testing
 
-struct CountryQuizAnswerer: Sendable {
-  func capital(for countryName: String, in countries: [Country]) -> String? {
-    countries.first { $0.name == countryName }?.capital
-  }
-}
-
 struct CountryQuizAnswererTests {
   @Test func capital_deliversCapitalForMatchingCountry() {
     let countries = [
