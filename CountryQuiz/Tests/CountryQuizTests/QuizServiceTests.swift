@@ -18,6 +18,17 @@ struct QuizServiceTests {
     #expect(answer == "The capital of Belgium is Brussels.")
   }
 
+  @Test func answer_deliversNotFoundForUnknownCountry() async throws {
+    let sut = makeSUT(
+      interpretResult: .capital(countryName: "Atlantis"),
+      loadResult: []
+    )
+
+    let answer = try await sut.answer("What is the capital of Atlantis?")
+
+    #expect(answer == "Sorry, I couldn't find a country named Atlantis.")
+  }
+
   // MARK: - Helpers
 
   private func makeSUT(interpretResult: QuestionType, loadResult: [Country]) -> QuizService {
