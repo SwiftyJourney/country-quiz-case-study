@@ -84,4 +84,15 @@ struct CountryQuizAnswererTests {
 
     #expect(result == nil)
   }
+
+  @Test func flag_deliversFlagForMatchingCountry() {
+    let countries = [
+      Country(name: "Brazil", capital: "Brasília", code: "BR", flag: "🇧🇷"),
+    ]
+    let sut = CountryQuizAnswerer()
+
+    let result = sut.flag(for: "Brazil", countries: countries)
+
+    #expect(result == "🇧🇷")
+  }
 }

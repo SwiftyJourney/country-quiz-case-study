@@ -18,4 +18,8 @@ public struct CountryQuizAnswerer: Sendable {
   public func code(for countryName: String, countries: [Country]) -> String? {
     countries.first { $0.name == countryName }?.code
   }
+
+  public func flag(for countryName: String, countries: [Country]) -> String? {
+    countries.first { $0.name == countryName }?.flag
+  }
 }
