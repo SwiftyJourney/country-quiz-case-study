@@ -22,6 +22,16 @@ struct RemoteCountryLoaderTests {
     #expect(client.requestedURLs == [url])
   }
 
+  @Test func loadTwice_requestsDataFromURLTwice() {
+    let url = URL(string: "https://a-given-url.com")!
+    let (sut, client) = makeSUT(url: url)
+
+    sut.load()
+    sut.load()
+
+    #expect(client.requestedURLs == [url, url])
+  }
+
   // MARK: - Helpers
 
   private func makeSUT(url: URL = URL(string: "https://any-url.com")!) -> (sut: RemoteCountryLoader, client: HTTPClientSpy) {
