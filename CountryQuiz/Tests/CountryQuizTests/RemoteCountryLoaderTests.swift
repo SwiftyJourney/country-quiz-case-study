@@ -74,7 +74,7 @@ struct RemoteCountryLoaderTests {
     )!
   }
 
-  private final class HTTPClientSpy: HTTPClient {
+  private final class HTTPClientSpy: HTTPClient, @unchecked Sendable {
     private(set) var requestedURLs: [URL] = []
     private var result: Result<(Data, HTTPURLResponse), Error> = .failure(NSError())
 
