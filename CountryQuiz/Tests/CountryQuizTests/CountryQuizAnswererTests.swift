@@ -22,4 +22,15 @@ struct CountryQuizAnswererTests {
 
     #expect(result == "Brussels")
   }
+
+  @Test func capital_deliversNilForUnknownCountry() {
+    let countries = [
+      Country(name: "Belgium", capital: "Brussels", code: "BE", flag: "🇧🇪")
+    ]
+    let sut = CountryQuizAnswerer()
+
+    let result = sut.capital(for: "Atlantis", in: countries)
+
+    #expect(result == nil)
+  }
 }
