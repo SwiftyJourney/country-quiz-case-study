@@ -63,6 +63,15 @@ struct RemoteCountryLoaderTests {
     }
   }
 
+  @Test func load_deliversEmptyOn200HTTPResponseWithEmptyJSONList() async throws {
+    let (sut, client) = makeSUT()
+    client.stub(data: emptyListJSON(), response: httpURLResponse(statusCode: 200))
+
+    let countries = try await sut.load()
+
+    #expect(countries.isEmpty)
+  }
+
   // MARK: - Helpers
 
   private func makeSUT(url: URL = URL(string: "https://any-url.com")!) -> (sut: RemoteCountryLoader, client: HTTPClientSpy) {
