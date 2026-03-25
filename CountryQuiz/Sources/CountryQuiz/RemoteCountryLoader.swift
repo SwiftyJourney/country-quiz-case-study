@@ -6,13 +6,13 @@ import Foundation
 
 public final class RemoteCountryLoader {
   private let url: URL
-  private let client: HTTPClient
+  private let client: any HTTPClient
 
   public enum Error: Swift.Error {
     case invalidData
   }
 
-  public init(url: URL, client: HTTPClient) {
+  public init(url: URL, client: any HTTPClient) {
     self.url = url
     self.client = client
   }

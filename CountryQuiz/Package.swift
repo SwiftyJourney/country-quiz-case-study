@@ -12,8 +12,15 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "CountryQuiz"
+      name: "CountryQuiz",
+      swiftSettings: [
+        .enableUpcomingFeature("ApproachableConcurrency"),
+        .enableUpcomingFeature("ExistentialAny"),
+        .enableUpcomingFeature("NonisolatedNonsendigByDefault"),
+        .enableUpcomingFeature("InferIsolatedConformances")
+      ]
     ),
     .testTarget(name: "CountryQuizTests", dependencies: ["CountryQuiz"])
-  ]
+  ],
+  swiftLanguageModes: [.v6]
 )
