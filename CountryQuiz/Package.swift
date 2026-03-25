@@ -14,5 +14,6 @@ let package = Package(
     .target(
       name: "CountryQuiz"
     ),
+    .testTarget(name: "CountryQuizTests", dependencies: ["CountryQuiz"])
   ]
 )
