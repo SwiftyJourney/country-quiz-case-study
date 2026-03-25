@@ -14,4 +14,8 @@ public struct CountryQuizAnswerer: Sendable {
       .filter { $0.name.lowercased().hasPrefix(prefix.lowercased()) }
       .map(\.name)
   }
+
+  public func code(for countryName: String, countries: [Country]) -> String? {
+    countries.first { $0.name == countryName }?.code
+  }
 }
