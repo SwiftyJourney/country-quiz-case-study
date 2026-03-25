@@ -27,4 +27,17 @@ struct CountryQuizAnswererTests {
 
     #expect(result == nil)
   }
+
+  @Test func countriesStartingWith_deliversMatchingCountries() {
+    let countries = [
+      Country(name: "Chad", capital: "N'Djamena", code: "TD", flag: "🇹🇩"),
+      Country(name: "Chile", capital: "Santiago", code: "CL", flag: "🇨🇱"),
+      Country(name: "Belgium", capital: "Brussels", code: "BE", flag: "🇧🇪"),
+    ]
+    let sut = CountryQuizAnswerer()
+
+    let result = sut.countries(startingWith: "Ch", in: countries)
+
+    #expect(result == ["Chad", "Chile"])
+  }
 }

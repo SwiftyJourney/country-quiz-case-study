@@ -8,4 +8,10 @@ public struct CountryQuizAnswerer: Sendable {
   public func capital(for countryName: String, in countries: [Country]) -> String? {
     countries.first { $0.name == countryName }?.capital
   }
+
+  public func countries(startingWith prefix: String, in countries: [Country]) -> [String] {
+    countries
+      .filter { $0.name.lowercased().hasPrefix(prefix.lowercased()) }
+      .map(\.name)
+  }
 }
