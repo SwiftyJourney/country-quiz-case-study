@@ -13,16 +13,21 @@ struct RemoteCountryLoaderTests {
     #expect(client.requestedURLs.isEmpty)
   }
 
-  // MARK: - Helpers
+  @Test func load_requestsDataFromURL() {
+    let url = URL(string: "https://a-given-url.com")!
+    let (sut, client) = makeSUT(url: url)
 
-  private func makeSUT() -> (sut: RemoteCountryLoader, client: HTTPClientSpy) {
-    let client = HTTPClientSpy()
-    let sut = RemoteCountryLoader(url: anyURL(), client: client)
-    return (sut, client)
+    sut.load()
+
+    #expect(client.requestedURLs == [url])
   }
 
-  private func anyURL() -> URL {
-    URL(string: "https://any-url.com")!
+  // MARK: - Helpers
+
+  private func makeSUT(url: URL = URL(string: "https://any-url.com")!) -> (sut: RemoteCountryLoader, client: HTTPClientSpy) {
+    let client = HTTPClientSpy()
+    let sut = RemoteCountryLoader(url: url, client: client)
+    return (sut, client)
   }
 
   private final class HTTPClientSpy: HTTPClient {

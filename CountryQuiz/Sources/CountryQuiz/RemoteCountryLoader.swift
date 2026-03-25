@@ -12,4 +12,8 @@ final class RemoteCountryLoader {
     self.url = url
     self.client = client
   }
+
+  func load() {
+    client.get(from: url)
+  }
 }
