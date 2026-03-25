@@ -40,4 +40,15 @@ struct CountryQuizAnswererTests {
 
     #expect(result == ["Chad", "Chile"])
   }
+
+  @Test func countriesStartingWith_deliversEmptyForNoMatches() {
+    let countries = [
+      Country(name: "Belgium", capital: "Brussels", code: "BE", flag: "🇧🇪"),
+    ]
+    let sut = CountryQuizAnswerer()
+
+    let result = sut.countries(startingWith: "ZZZ", in: countries)
+
+    #expect(result.isEmpty)
+  }
 }
