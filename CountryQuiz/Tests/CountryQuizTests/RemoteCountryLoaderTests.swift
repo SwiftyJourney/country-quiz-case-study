@@ -72,6 +72,23 @@ struct RemoteCountryLoaderTests {
     #expect(countries.isEmpty)
   }
 
+  @Test func load_deliversCountriesOn200HTTPResponseWithJSONItems() async throws {
+    let country1 = Country(name: "Belgium", capital: "Brussels", code: "BE", flag: "🇧🇪")
+    let country2 = Country(name: "Greece", capital: "Athens", code: "GR", flag: "🇬🇷")
+    let json = [
+      makeCountryJSON(name: "Belgium", capital: "Brussels", code: "BE", flag: "🇧🇪"),
+      makeCountryJSON(name: "Greece", capital: "Athens", code: "GR", flag: "🇬🇷")
+    ]
+    let data = try JSONSerialization.data(withJSONObject: json)
+
+    let (sut, client) = makeSUT()
+    client.stub(data: data, response: httpURLResponse(statusCode: 200))
+
+    let countries = try await sut.load()
+
+    #expect(countries == [country1, country2])
+  }
+
   // MARK: - Helpers
 
   private func makeSUT(url: URL = URL(string: "https://any-url.com")!) -> (sut: RemoteCountryLoader, client: HTTPClientSpy) {
@@ -95,6 +112,15 @@ struct RemoteCountryLoaderTests {
 
   private func emptyListJSON() -> Data {
     Data("[]".utf8)
+  }
+
+  private func makeCountryJSON(name: String, capital: String, code: String, flag: String) -> [String: Any] {
+    [
+      "name": ["common": name],
+      "capital": [capital],
+      "cca2": code,
+      "flag": flag
+    ]
   }
 
   private final class HTTPClientSpy: HTTPClient, @unchecked Sendable {
