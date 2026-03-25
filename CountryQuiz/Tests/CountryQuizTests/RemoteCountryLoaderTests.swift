@@ -43,6 +43,16 @@ struct RemoteCountryLoaderTests {
     }
   }
 
+  @Test(arguments: [199, 201, 300, 500, 500])
+  func load_deliversErrorOnNon200HTTPResponse(statusCode: Int) async {
+    let (sut, client) = makeSUT()
+    client.stub(data: Data(), response: httpURLResponse(statusCode: statusCode))
+
+    await #expect(throws: RemoteCountryLoader.Error.self) {
+      try await sut.load()
+    }
+  }
+
   // MARK: - Helpers
 
   private func makeSUT(url: URL = URL(string: "https://any-url.com")!) -> (sut: RemoteCountryLoader, client: HTTPClientSpy) {
@@ -53,6 +63,15 @@ struct RemoteCountryLoaderTests {
 
   private func anyNSError() -> NSError {
     NSError(domain: "test", code: 0)
+  }
+
+  private func httpURLResponse(statusCode: Int) -> HTTPURLResponse {
+    HTTPURLResponse(
+      url: URL(string: "https://any-url.com")!,
+      statusCode: statusCode,
+      httpVersion: nil,
+      headerFields: nil
+    )!
   }
 
   private final class HTTPClientSpy: HTTPClient {
