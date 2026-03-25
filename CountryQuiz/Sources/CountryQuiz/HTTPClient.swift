@@ -4,6 +4,6 @@
 
 import Foundation
 
-protocol HTTPClient {
+public protocol HTTPClient {
   func get(from url: URL)
 }

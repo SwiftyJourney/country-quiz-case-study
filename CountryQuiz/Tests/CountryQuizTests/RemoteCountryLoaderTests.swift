@@ -2,9 +2,9 @@
 //  Copyright © Juan Francisco Dorado Torres. All rights reserved.
 //
 
+import CountryQuiz
 import Foundation
 import Testing
-@testable import CountryQuiz
 
 struct RemoteCountryLoaderTests {
   @Test func init_doesNotRequestDataFromURL() {
