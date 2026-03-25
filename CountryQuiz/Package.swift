@@ -4,11 +4,19 @@ import PackageDescription
 
 let package = Package(
   name: "CountryQuiz",
+  platforms: [
+    .iOS(.v26),
+    .macOS(.v26)
+  ],
   products: [
     .library(
       name: "CountryQuiz",
       targets: ["CountryQuiz"]
     ),
+    .library(
+      name: "CountryQuizFoundationModels",
+      targets: ["CountryQuizFoundationModels"]
+    )
   ],
   targets: [
     .target(
@@ -16,7 +24,17 @@ let package = Package(
       swiftSettings: [
         .enableUpcomingFeature("ApproachableConcurrency"),
         .enableUpcomingFeature("ExistentialAny"),
-        .enableUpcomingFeature("NonisolatedNonsendigByDefault"),
+        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+        .enableUpcomingFeature("InferIsolatedConformances")
+      ]
+    ),
+    .target(
+      name: "CountryQuizFoundationModels",
+      dependencies: ["CountryQuiz"],
+      swiftSettings: [
+        .enableUpcomingFeature("ApproachableConcurrency"),
+        .enableUpcomingFeature("ExistentialAny"),
+        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
         .enableUpcomingFeature("InferIsolatedConformances")
       ]
     ),
