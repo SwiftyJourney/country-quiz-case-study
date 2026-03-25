@@ -91,7 +91,7 @@ struct RemoteCountryLoaderTests {
 
   // MARK: - Helpers
 
-  private func makeSUT(url: URL = URL(string: "https://any-url.com")!) -> (sut: RemoteCountryLoader, client: HTTPClientSpy) {
+  private func makeSUT(url: URL = URL(string: "https://any-url.com")!) -> (sut: CountryLoader, client: HTTPClientSpy) {
     let client = HTTPClientSpy()
     let sut = RemoteCountryLoader(url: url, client: client)
     return (sut, client)

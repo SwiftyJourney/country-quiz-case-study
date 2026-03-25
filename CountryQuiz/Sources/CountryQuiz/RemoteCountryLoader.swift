@@ -4,7 +4,7 @@
 
 import Foundation
 
-public final class RemoteCountryLoader: Sendable {
+public final class RemoteCountryLoader: CountryLoader {
   private let url: URL
   private let client: any HTTPClient
 
