@@ -51,4 +51,15 @@ struct CountryQuizAnswererTests {
 
     #expect(result.isEmpty)
   }
+
+  @Test func countriesStartingWith_matchesCaseInsensitive() {
+    let countries = [
+      Country(name: "Chile", capital: "Santiago", code: "CL", flag: "🇨🇱"),
+    ]
+    let sut = CountryQuizAnswerer()
+
+    let result = sut.countries(startingWith: "ch", in: countries)
+
+    #expect(result == ["Chile"])
+  }
 }
