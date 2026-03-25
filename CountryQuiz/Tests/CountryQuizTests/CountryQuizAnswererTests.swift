@@ -95,4 +95,16 @@ struct CountryQuizAnswererTests {
 
     #expect(result == "🇧🇷")
   }
+
+  @Test func flag_deliversNilForUnknownCountry() {
+    let countries = [
+      Country(name: "Brazil", capital: "Brasília", code: "BR", flag: "🇧🇷"),
+    ]
+    let sut = CountryQuizAnswerer()
+
+    let result = sut.flag(for: "Atlantis", countries: countries)
+
+    #expect(result == nil)
+
+  }
 }
