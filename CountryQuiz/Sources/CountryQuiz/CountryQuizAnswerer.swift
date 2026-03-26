@@ -16,7 +16,7 @@ public struct CountryQuizAnswerer {
   }
 
   public func code(for countryName: String, countries: [Country]) -> String? {
-    countries.first { $0.name == countryName }?.code
+    countries.first { $0.name.lowercased() == countryName.lowercased() }?.code
   }
 
   public func flag(for countryName: String, countries: [Country]) -> String? {

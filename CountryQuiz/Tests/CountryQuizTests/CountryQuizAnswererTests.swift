@@ -117,4 +117,15 @@ struct CountryQuizAnswererTests {
 
     #expect(result == "Athens")
   }
+
+  @Test func code_matchesCaseInsensitive() {
+    let countries = [
+      Country(name: "Greece", capital: "Athens", code: "GR", flag: "🇬🇷"),
+    ]
+    let sut = CountryQuizAnswerer()
+
+    let result = sut.code(for: "greece", countries: countries)
+
+    #expect(result == "GR")
+  }
 }
