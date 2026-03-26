@@ -81,6 +81,17 @@ struct QuizServiceTests {
     #expect(answer == "The flag of Brazil is 🇧🇷")
   }
 
+  @Test func answer_deliversSuggestionForUnrecognizedQuestion() async throws {
+    let sut = makeSUT(
+      interpretResult: .unrecognized,
+      loadResult: []
+    )
+
+    let answer = try await sut.answer("What time is it?")
+
+    #expect(answer == "I can answer questions about: capitals, country codes, flags, and countries starting with specific letters.")
+  }
+
   // MARK: - Helpers
 
   private func makeSUT(interpretResult: QuestionType, loadResult: [Country]) -> QuizService {
