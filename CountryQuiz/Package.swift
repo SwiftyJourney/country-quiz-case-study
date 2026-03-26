@@ -44,6 +44,15 @@ let package = Package(
       dependencies: ["CountryQuiz"],
       swiftSettings: defaultSwiftSettings
     ),
+    .executableTarget(
+      name: "CountryQuizCLI",
+      dependencies: [
+        "CountryQuiz",
+        "CountryQuizAPI",
+        "CountryQuizFoundationModels"
+      ],
+      swiftSettings: defaultSwiftSettings
+    ),
     .testTarget(
       name: "CountryQuizTests",
       dependencies: ["CountryQuiz"]
