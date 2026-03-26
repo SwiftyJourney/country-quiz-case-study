@@ -2,7 +2,7 @@
 
 import PackageDescription
 
-let swiftSettings: [SwiftSetting] = [
+let defaultSwiftSettings: [SwiftSetting] = [
   .enableUpcomingFeature("ApproachableConcurrency"),
   .enableUpcomingFeature("ExistentialAny"),
   .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
@@ -23,19 +23,35 @@ let package = Package(
     .library(
       name: "CountryQuizFoundationModels",
       targets: ["CountryQuizFoundationModels"]
+    ),
+    .library(
+      name: "CountryQuizAPI",
+      targets: ["CountryQuizAPI"]
     )
   ],
   targets: [
     .target(
       name: "CountryQuiz",
-      swiftSettings: swiftSettings
+      swiftSettings: defaultSwiftSettings
     ),
     .target(
       name: "CountryQuizFoundationModels",
       dependencies: ["CountryQuiz"],
-      swiftSettings: swiftSettings
+      swiftSettings: defaultSwiftSettings
     ),
-    .testTarget(name: "CountryQuizTests", dependencies: ["CountryQuiz"])
+    .target(
+      name: "CountryQuizAPI",
+      dependencies: ["CountryQuiz"],
+      swiftSettings: defaultSwiftSettings
+    ),
+    .testTarget(
+      name: "CountryQuizTests",
+      dependencies: ["CountryQuiz"]
+    ),
+    .testTarget(
+      name: "CountryQuizAPITests",
+      dependencies: ["CountryQuizAPI"]
+    )
   ],
   swiftLanguageModes: [.v6]
 )
