@@ -46,6 +46,17 @@ struct QuizServiceTests {
     #expect(answer == "Chad, Chile")
   }
 
+  @Test func answer_deliversNoMatchesForPrefixQuestion() async throws {
+    let sut = makeSUT(
+      interpretResult: .countriesStartingWith(prefix: "ZZZ"),
+      loadResult: []
+    )
+
+    let answer = try await sut.answer("What countries start with ZZZ?")
+
+    #expect(answer == "No countries found starting with ZZZ.")
+  }
+
   // MARK: - Helpers
 
   private func makeSUT(interpretResult: QuestionType, loadResult: [Country]) -> QuizService {
