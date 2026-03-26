@@ -57,6 +57,18 @@ struct QuizServiceTests {
     #expect(answer == "No countries found starting with ZZZ.")
   }
 
+  @Test func answer_deliversCodeForCodeQuestion() async throws {
+    let countries = [Country(name: "Greece", capital: "Athens", code: "GR", flag: "🇬🇷")]
+    let sut = makeSUT(
+      interpretResult: .code(countryName: "Greece"),
+      loadResult: countries
+    )
+
+    let answer = try await sut.answer("What is the ISO alpha-2 country code for Greece?")
+
+    #expect(answer == "The ISO alpha-2 code for Greece is GR.")
+  }
+
   // MARK: - Helpers
 
   private func makeSUT(interpretResult: QuestionType, loadResult: [Country]) -> QuizService {
