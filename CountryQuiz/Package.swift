@@ -2,6 +2,13 @@
 
 import PackageDescription
 
+let swiftSettings: [SwiftSetting] = [
+  .enableUpcomingFeature("ApproachableConcurrency"),
+  .enableUpcomingFeature("ExistentialAny"),
+  .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+  .enableUpcomingFeature("InferIsolatedConformances")
+]
+
 let package = Package(
   name: "CountryQuiz",
   platforms: [
@@ -21,22 +28,12 @@ let package = Package(
   targets: [
     .target(
       name: "CountryQuiz",
-      swiftSettings: [
-        .enableUpcomingFeature("ApproachableConcurrency"),
-        .enableUpcomingFeature("ExistentialAny"),
-        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
-        .enableUpcomingFeature("InferIsolatedConformances")
-      ]
+      swiftSettings: swiftSettings
     ),
     .target(
       name: "CountryQuizFoundationModels",
       dependencies: ["CountryQuiz"],
-      swiftSettings: [
-        .enableUpcomingFeature("ApproachableConcurrency"),
-        .enableUpcomingFeature("ExistentialAny"),
-        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
-        .enableUpcomingFeature("InferIsolatedConformances")
-      ]
+      swiftSettings: swiftSettings
     ),
     .testTarget(name: "CountryQuizTests", dependencies: ["CountryQuiz"])
   ],
