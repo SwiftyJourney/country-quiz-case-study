@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A95D3AFC2F758B47007E7EA3 /* CountryQuiz in Frameworks */ = {isa = PBXBuildFile; productRef = A95D3AFB2F758B47007E7EA3 /* CountryQuiz */; };
+		A95D3AFE2F758B47007E7EA3 /* CountryQuizAPI in Frameworks */ = {isa = PBXBuildFile; productRef = A95D3AFD2F758B47007E7EA3 /* CountryQuizAPI */; };
+		A95D3B002F758B47007E7EA3 /* CountryQuizFoundationModels in Frameworks */ = {isa = PBXBuildFile; productRef = A95D3AFF2F758B47007E7EA3 /* CountryQuizFoundationModels */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		A95D3AEC2F758AF2007E7EA3 /* CountryQuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountryQuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +29,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95D3AFC2F758B47007E7EA3 /* CountryQuiz in Frameworks */,
+				A95D3AFE2F758B47007E7EA3 /* CountryQuizAPI in Frameworks */,
+				A95D3B002F758B47007E7EA3 /* CountryQuizFoundationModels in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +74,9 @@
 			);
 			name = CountryQuizApp;
 			packageProductDependencies = (
+				A95D3AFB2F758B47007E7EA3 /* CountryQuiz */,
+				A95D3AFD2F758B47007E7EA3 /* CountryQuizAPI */,
+				A95D3AFF2F758B47007E7EA3 /* CountryQuizFoundationModels */,
 			);
 			productName = CountryQuizApp;
 			productReference = A95D3AEC2F758AF2007E7EA3 /* CountryQuizApp.app */;
@@ -94,6 +106,9 @@
 			);
 			mainGroup = A95D3AE32F758AF2007E7EA3;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A95D3AFA2F758B47007E7EA3 /* XCLocalSwiftPackageReference "../CountryQuiz" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A95D3AED2F758AF2007E7EA3 /* Products */;
 			projectDirPath = "";
@@ -345,6 +360,28 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A95D3AFA2F758B47007E7EA3 /* XCLocalSwiftPackageReference "../CountryQuiz" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../CountryQuiz;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A95D3AFB2F758B47007E7EA3 /* CountryQuiz */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CountryQuiz;
+		};
+		A95D3AFD2F758B47007E7EA3 /* CountryQuizAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CountryQuizAPI;
+		};
+		A95D3AFF2F758B47007E7EA3 /* CountryQuizFoundationModels */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CountryQuizFoundationModels;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A95D3AE42F758AF2007E7EA3 /* Project object */;
 }

@@ -27,6 +27,10 @@ let package = Package(
     .library(
       name: "CountryQuizAPI",
       targets: ["CountryQuizAPI"]
+    ),
+    .library(
+      name: "CountryQuiziOS",
+      targets: ["CountryQuiziOS"]
     )
   ],
   targets: [
@@ -41,6 +45,11 @@ let package = Package(
     ),
     .target(
       name: "CountryQuizAPI",
+      dependencies: ["CountryQuiz"],
+      swiftSettings: defaultSwiftSettings
+    ),
+    .target(
+      name: "CountryQuiziOS",
       dependencies: ["CountryQuiz"],
       swiftSettings: defaultSwiftSettings
     ),
