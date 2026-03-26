@@ -105,6 +105,16 @@ struct CountryQuizAnswererTests {
     let result = sut.flag(for: "Atlantis", countries: countries)
 
     #expect(result == nil)
+  }
 
+  @Test func capital_matchesCaseInsensitive() {
+    let countries = [
+      Country(name: "Greece", capital: "Athens", code: "GR", flag: "🇬🇷"),
+    ]
+    let sut = CountryQuizAnswerer()
+
+    let result = sut.capital(for: "greece", in: countries)
+
+    #expect(result == "Athens")
   }
 }
