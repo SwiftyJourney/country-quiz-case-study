@@ -24,15 +24,15 @@ public final class ChatViewModel {
 
     let question = trimmed
     inputText = ""
-    messages.append(ChatMessage(id: UUID(), text: question, role: .user, retryQuestion: nil))
+    messages.append(ChatMessage(text: question, role: .user))
 
     isLoading = true
     Task {
       do {
         let answer = try await answerQuestion(question)
-        messages.append(ChatMessage(id: UUID(), text: answer, role: .app, retryQuestion: nil))
+        messages.append(ChatMessage(text: answer, role: .app))
       } catch {
-        messages.append(ChatMessage(id: UUID(), text: "Something went wrong. Please try again.", role: .error, retryQuestion: question))
+        messages.append(ChatMessage(text: "Something went wrong. Please try again.", role: .error, retryQuestion: question))
       }
       isLoading = false
     }

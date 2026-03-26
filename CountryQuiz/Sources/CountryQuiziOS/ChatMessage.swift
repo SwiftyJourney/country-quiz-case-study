@@ -16,7 +16,7 @@ public struct ChatMessage: Identifiable, Equatable {
     case error
   }
 
-  init(id: UUID, text: String, role: Role, retryQuestion: String?) {
+  init(id: UUID = UUID(), text: String, role: Role, retryQuestion: String? = nil) {
     self.id = id
     self.text = text
     self.role = role
