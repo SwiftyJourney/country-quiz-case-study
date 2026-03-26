@@ -20,6 +20,6 @@ public struct CountryQuizAnswerer {
   }
 
   public func flag(for countryName: String, countries: [Country]) -> String? {
-    countries.first { $0.name == countryName }?.flag
+    countries.first { $0.name.lowercased() == countryName.lowercased() }?.flag
   }
 }

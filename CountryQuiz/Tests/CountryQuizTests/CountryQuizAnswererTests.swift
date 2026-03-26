@@ -128,4 +128,15 @@ struct CountryQuizAnswererTests {
 
     #expect(result == "GR")
   }
+
+  @Test func flag_matchesCaseInsensitive() {
+    let countries = [
+      Country(name: "Brazil", capital: "Brasília", code: "BR", flag: "🇧🇷"),
+    ]
+    let sut = CountryQuizAnswerer()
+
+    let result = sut.flag(for: "brazil", countries: countries)
+
+    #expect(result == "🇧🇷")
+  }
 }
