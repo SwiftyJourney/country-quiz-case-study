@@ -69,6 +69,18 @@ struct QuizServiceTests {
     #expect(answer == "The ISO alpha-2 code for Greece is GR.")
   }
 
+  @Test func answer_deliversFlagForFlagQuestion() async throws {
+    let countries = [Country(name: "Brazil", capital: "Brasília", code: "BR", flag: "🇧🇷")]
+    let sut = makeSUT(
+      interpretResult: .flag(countryName: "Brazil"),
+      loadResult: countries
+    )
+
+    let answer = try await sut.answer("What is the flag of Brazil?")
+
+    #expect(answer == "The flag of Brazil is 🇧🇷")
+  }
+
   // MARK: - Helpers
 
   private func makeSUT(interpretResult: QuestionType, loadResult: [Country]) -> QuizService {
