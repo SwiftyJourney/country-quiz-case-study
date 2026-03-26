@@ -29,6 +29,23 @@ struct QuizServiceTests {
     #expect(answer == "Sorry, I couldn't find a country named Atlantis.")
   }
 
+  @Test func answer_deliversCountriesForPrefixQuestion() async throws {
+    let countries = [
+      Country(name: "Chad", capital: "N'Djamena", code: "TD", flag: "🇹🇩"),
+      Country(name: "Chile", capital: "Santiago", code: "CL", flag: "🇨🇱"),
+      Country(name: "Belgium", capital: "Brussels", code: "BE", flag: "🇧🇪"),
+    ]
+
+    let sut = makeSUT(
+      interpretResult: .countriesStartingWith(prefix: "Ch"),
+      loadResult: countries
+    )
+
+    let answer = try await sut.answer("What countries start with CH?")
+
+    #expect(answer == "Chad, Chile")
+  }
+
   // MARK: - Helpers
 
   private func makeSUT(interpretResult: QuestionType, loadResult: [Country]) -> QuizService {
