@@ -2,6 +2,7 @@
 //  Copyright © Juan Francisco Dorado Torres. All rights reserved.
 //
 
+import CountryQuiz
 import Foundation
 
 public final class RemoteCountryLoader: CountryLoader {
