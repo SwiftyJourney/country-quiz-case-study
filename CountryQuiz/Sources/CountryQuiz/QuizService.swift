@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct QuizService {
+public struct QuizService: Sendable {
   private let interpreter: any QuestionInterpreter
   private let loader: any CountryLoader
   private let answerer = CountryQuizAnswerer()

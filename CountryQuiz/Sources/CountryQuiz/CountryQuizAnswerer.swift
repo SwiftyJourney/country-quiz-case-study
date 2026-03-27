@@ -2,7 +2,7 @@
 //  Copyright © Juan Francisco Dorado Torres. All rights reserved.
 //
 
-public struct CountryQuizAnswerer {
+public struct CountryQuizAnswerer: Sendable {
   public init() {}
 
   public func capital(for countryName: String, in countries: [Country]) -> String? {
