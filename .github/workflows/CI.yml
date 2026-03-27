@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-package:
+    name: Package Tests (Unit + Integration)
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_26.3.app
+
+      - name: Run Unit Tests
+        run: cd CountryQuiz && swift test --filter CountryQuizTests
+
+      - name: Run Integration Tests
+        run: cd CountryQuiz && swift test --filter CountryQuizAPIIntegrationTests
+
+  build-ios:
+    name: Build iOS App
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_26.3.app
+
+      - name: Build iOS App
+        run: |
+          xcodebuild build \
+            -project CountryQuizApp/CountryQuizApp.xcodeproj \
+            -scheme CountryQuizApp \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            -enableThreadSanitizer YES \
+            -resultBundlePath BuildResults.xcresult
+
+      - name: Upload build results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BuildResults
+          path: BuildResults.xcresult
