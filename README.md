@@ -352,8 +352,8 @@ graph TB
     Presenter --> QuestionInterpreter
     Presenter --> CountryLoader
     Presenter --> AnswerFormatter
-    QuestionInterpreter <|.. NLInterpreter
-    CountryLoader <|.. RemoteCountryLoader
+    NLInterpreter -.implements.-> QuestionInterpreter
+    RemoteCountryLoader -.implements.-> CountryLoader
     RemoteCountryLoader --> HTTPClient
 ```
 
