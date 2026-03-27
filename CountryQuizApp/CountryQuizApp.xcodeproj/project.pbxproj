@@ -10,6 +10,7 @@
 		A95D3AFC2F758B47007E7EA3 /* CountryQuiz in Frameworks */ = {isa = PBXBuildFile; productRef = A95D3AFB2F758B47007E7EA3 /* CountryQuiz */; };
 		A95D3AFE2F758B47007E7EA3 /* CountryQuizAPI in Frameworks */ = {isa = PBXBuildFile; productRef = A95D3AFD2F758B47007E7EA3 /* CountryQuizAPI */; };
 		A95D3B002F758B47007E7EA3 /* CountryQuizFoundationModels in Frameworks */ = {isa = PBXBuildFile; productRef = A95D3AFF2F758B47007E7EA3 /* CountryQuizFoundationModels */; };
+		A95D3B092F76171D007E7EA3 /* CountryQuiziOS in Frameworks */ = {isa = PBXBuildFile; productRef = A95D3B082F76171D007E7EA3 /* CountryQuiziOS */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			files = (
 				A95D3AFC2F758B47007E7EA3 /* CountryQuiz in Frameworks */,
 				A95D3AFE2F758B47007E7EA3 /* CountryQuizAPI in Frameworks */,
+				A95D3B092F76171D007E7EA3 /* CountryQuiziOS in Frameworks */,
 				A95D3B002F758B47007E7EA3 /* CountryQuizFoundationModels in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,6 +44,7 @@
 			isa = PBXGroup;
 			children = (
 				A95D3AEE2F758AF2007E7EA3 /* CountryQuizApp */,
+				A95D3B072F76171D007E7EA3 /* Frameworks */,
 				A95D3AED2F758AF2007E7EA3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,6 +55,13 @@
 				A95D3AEC2F758AF2007E7EA3 /* CountryQuizApp.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A95D3B072F76171D007E7EA3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,6 +87,7 @@
 				A95D3AFB2F758B47007E7EA3 /* CountryQuiz */,
 				A95D3AFD2F758B47007E7EA3 /* CountryQuizAPI */,
 				A95D3AFF2F758B47007E7EA3 /* CountryQuizFoundationModels */,
+				A95D3B082F76171D007E7EA3 /* CountryQuiziOS */,
 			);
 			productName = CountryQuizApp;
 			productReference = A95D3AEC2F758AF2007E7EA3 /* CountryQuizApp.app */;
@@ -380,6 +391,11 @@
 		A95D3AFF2F758B47007E7EA3 /* CountryQuizFoundationModels */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CountryQuizFoundationModels;
+		};
+		A95D3B082F76171D007E7EA3 /* CountryQuiziOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A95D3AFA2F758B47007E7EA3 /* XCLocalSwiftPackageReference "../CountryQuiz" */;
+			productName = CountryQuiziOS;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
