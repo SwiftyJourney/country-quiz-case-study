@@ -11,7 +11,7 @@ jobs:
     name: Package Tests (Unit + Integration)
     runs-on: macos-26
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode_26.3.app
@@ -26,7 +26,7 @@ jobs:
     name: Build iOS App
     runs-on: macos-26
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode_26.3.app
@@ -42,7 +42,7 @@ jobs:
 
       - name: Upload build results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: BuildResults
           path: BuildResults.xcresult
