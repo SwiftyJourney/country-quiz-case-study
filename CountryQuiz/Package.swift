@@ -67,6 +67,10 @@ let package = Package(
       dependencies: ["CountryQuiz"]
     ),
     .testTarget(
+      name: "CountryQuizAPITests",
+      dependencies: ["CountryQuiz", "CountryQuizAPI"]
+    ),
+    .testTarget(
       name: "CountryQuizAPIIntegrationTests",
       dependencies: ["CountryQuizAPI"]
     )
